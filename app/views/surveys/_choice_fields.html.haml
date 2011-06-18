@@ -1,0 +1,4 @@
+%li.choice
+  = f.input :title
+  = f.input :ext_id
+  %div!= "(#{link_to_remove_fields "supprimer", f, :selector => ".choice"})"

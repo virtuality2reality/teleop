@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ext_id: MyString
+  title: MyString
+  client_id: 1
+
+two:
+  ext_id: MyString
+  title: MyString
+  client_id: 1

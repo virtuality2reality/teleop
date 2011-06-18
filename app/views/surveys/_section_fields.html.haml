@@ -1,0 +1,12 @@
+%li.section
+  %fieldset
+    %legend Section
+    = f.input :title
+    %ul.questions
+      = f.fields_for :questions do |builder|
+        = render 'question_fields', :f => builder, :typ => builder.object.typ
+    %fieldset
+      %legend Actions
+      = link_to_remove_fields "Supprimer la section", f, :selector => ".section"
+      = link_to_add_fields "Nouvelle question ouverte", f, :questions, :typ => "open"
+      = link_to_add_fields "Nouvelle question à choix", f, :questions, :typ => "choices"

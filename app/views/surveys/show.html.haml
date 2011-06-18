@@ -1,0 +1,17 @@
+%h1= "#{@survey.client.name} - #{@survey.title}"
+
+%fieldset
+  %legend Actions
+  = link_to "Nouvel appel"
+  = link_to "Editer le questionnaire", edit_client_survey_path(@survey.client, @survey)
+
+%h2 Appels
+
+%h2 Questionnaire
+- @survey.sections.each_with_index do |s, i|
+  %h3= "#{i+1}) #{s.title}"
+  - s.questions.each_with_index do |q, i|
+    %h4= "#{i+1}) #{q.title}"
+    %ul
+      - q.choices.each_with_index do |c, i|
+        %li= "#{c.title}"

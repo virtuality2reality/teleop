@@ -1,0 +1,25 @@
+:javascript
+  $(document).ready(function() {
+    sortableOptions =
+    {
+      axis: 'y',
+      cursor: 'move',
+      placeholder: 'ui-state-highlight'
+    };
+    $(".sections").sortable(sortableOptions);
+    $(".questions").sortable(sortableOptions);
+  });
+
+= simple_form_for [@survey.client, @survey] do |f|
+  = f.hidden_field :client_id
+  %fieldset
+    %legend Général
+    = f.input :title
+    = f.input :ext_id
+  %ul.sections
+    = f.fields_for :sections do |builder|
+      = render 'section_fields', :f => builder
+  %fieldset
+    %legend Actions
+    = link_to_add_fields "Nouvelle section", f, :sections, :selector => ".sections"
+  = f.button :submit

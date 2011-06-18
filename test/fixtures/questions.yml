@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ext_id: MyString
+  typ: MyString
+  title: MyString
+  position: 1
+  section_id: 1
+
+two:
+  ext_id: MyString
+  typ: MyString
+  title: MyString
+  position: 1
+  section_id: 1
