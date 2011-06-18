@@ -1,18 +1,15 @@
 %li.question
   %fieldset
     %legend Question
+    %div
+      = link_to_remove_fields image_tag('icons/actions/delete.png'), f, :selector => ".question"
     = f.hidden_field :typ, :value => typ
     = f.input :title
     = f.input :ext_id
     - case typ
     - when "choices"
-      %fieldset
-        %legend Choix
-        %ul.choices
-          = f.fields_for :choices do |builder|
-            = render 'choice_fields', :f => builder
-        %div= link_to_add_fields "Nouveau choix", f, :choices
-    %fieldset
-      %legend Actions
-      = link_to_remove_fields "Supprimer la question", f, :selector => ".question"
+      %ul.choices
+        = f.fields_for :choices do |builder|
+          = render 'choice_fields', :f => builder
+      %div= link_to_add_fields "Nouveau choix", f, :choices, :class => "button white"
     

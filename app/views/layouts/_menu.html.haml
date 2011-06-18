@@ -1,7 +1,7 @@
 %ul#menu
-  - Client.all.each do |c|
-    %li
-      = link_to c.name, c
-      %ul
-        - c.surveys.each do |s|
-          %li= s.title
+  %li
+    = link_to "Clients"
+    %ul
+      - Client.all.each do |c|
+        %li
+          = link_to c.name, c

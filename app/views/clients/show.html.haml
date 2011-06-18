@@ -1,21 +1,20 @@
 %h1= @client.name
 
-%fieldset
-  %legend Actions
-  = link_to "Créer un nouveau questionnaire", new_client_survey_path(@client)
-  = simple_form_for [@client, @survey], :html => {:novalidate => true} do |f|
-    = f.hidden_field :client_id
-    = f.input :title
-    = f.button :submit, "Créer un nouveau questionnaire"
+.bloc
+  .title Actions
+  .content
+    = link_to "Créer un nouveau questionnaire", new_client_survey_path(@client)
 
-%h2 Questionnaires
-%table
-  %thead
-    %tr
-      %th Titre
-  %tbody
-    - @client.surveys.each do |s|
-      %tr
-        - logger.debug s.inspect
-        %td= link_to s.title, client_survey_path(@client, s)
+.bloc
+  .title Questionnaires
+  .content
+    %table
+      %thead
+        %tr
+          %th Titre
+      %tbody
+        - @client.surveys.each do |s|
+          %tr
+            - logger.debug s.inspect
+            %td= link_to s.title, client_survey_path(@client, s)
   

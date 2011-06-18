@@ -1,4 +1,7 @@
 %li.choice
-  = f.input :title
-  = f.input :ext_id
-  %div!= "(#{link_to_remove_fields "supprimer", f, :selector => ".choice"})"
+  %fieldset
+    %legend Choix
+    %div
+      = link_to_remove_fields image_tag('icons/actions/delete.png'), f, :selector => ".choice"
+    = f.input :title
+    = f.input :ext_id
