@@ -5,13 +5,13 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'haml'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 
 group :development do
+  gem 'sqlite3'
   gem 'wirble'
   gem 'hirb'
   gem 'awesome_print'
