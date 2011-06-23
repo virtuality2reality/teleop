@@ -17,6 +17,11 @@ group :development do
   gem 'awesome_print'
 end
 
+group :production do
+  gem 'pg'
+  gem 'thin'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
