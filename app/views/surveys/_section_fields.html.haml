@@ -1,10 +1,11 @@
 %li.section
+  = f.hidden_field :position, :class => "position"
   %fieldset
     %legend Section
     %div
       = link_to_remove_fields image_tag('icons/actions/delete.png'), f, :selector => ".section"
     = f.input :title
-    %ul.questions
+    %ul.questions.sortable
       = f.fields_for :questions do |builder|
         = render 'question_fields', :f => builder, :typ => builder.object.typ
     %div

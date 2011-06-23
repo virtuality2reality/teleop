@@ -4,6 +4,7 @@ var teleop = {
   remove_fields: function(link, selector) {
     $(link).prev("input[type=hidden]").val("1");
     $(link).closest(selector).hide(200);
+    $(link).closest(selector).find("input[type!=hidden]").remove();
   },
 
   add_fields: function(link, association, content, selector) {
@@ -43,6 +44,14 @@ $('#sidebar>ul>li[class!="nosubmenu"]>a').each(function(){
         }
         return false;
     }); 
+});
+
+/**
+ * Hide notification when close button is pressed
+**/
+$('.notif .close').click(function(){
+   $(this).parent().fadeTo(500,0).slideUp(); 
+   return false; 
 });
 
 });

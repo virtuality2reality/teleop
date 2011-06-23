@@ -1,21 +1,40 @@
-%h1= link_to("#{@survey.client.name}", @survey.client) + " > #{@survey.title}"
+%h1= breadcrumb(@survey.client, @survey.title)
 
 .bloc
   .title Actions
   .content
-    = link_to "Nouvel appel", "#", :class => "button"
+    = link_to "Nouvel appel", new_client_survey_call_path(@survey.client, @survey), :class => "button"
     = link_to "Editer le questionnaire", edit_client_survey_path(@survey.client, @survey), :class => "button"
 
 .bloc
   .title Appels
+  .content
+    %table
+      %thead
+        %tr
+          %th Heure
+          %th Nb réponses
+          %th Actions
+      %tbody
+        - @calls.each do |c|
+          %tr
+            %td= link_to l(c.created_at), [@survey.client, @survey, c]
+            %td= c.answers.size
+            %td
+              = link_to image_tag("icons/actions/edit.png"), edit_client_survey_call_path(@survey.client, @survey, c)
+    = will_paginate @calls
 
 .bloc
   .title Questionnaire
   .content
-    - @survey.sections.each_with_index do |s, i|
-      %h3= "#{i+1}) #{s.title}"
-      - s.questions.each_with_index do |q, i|
-        %h4= "#{i+1}) #{q.title}"
-        %ul
-          - q.choices.each_with_index do |c, i|
-            %li= "#{c.title}"
+    %ol
+      - @survey.sections.each do |s|
+        %li
+          %h3= s.title
+          %ol
+            - s.questions.each do |q|
+              %li
+                %h4= q.title
+                %ul
+                  - q.choices.each do |c|
+                    %li= "#{c.title}"

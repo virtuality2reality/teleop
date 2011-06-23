@@ -1,0 +1,12 @@
+= f.hidden_field :question_id, :value => f.object.question.id
+= f.hidden_field :id, :value => f.object.id if f.object.persisted?
+%h3= f.object.question.title
+%div
+  - if f.object.persisted?
+    %div
+      = link_to_remove_fields image_tag('icons/actions/delete.png'), f, :selector => ".answer"
+  - case f.object.question.typ
+  - when "open"
+    = f.input :body, :label => false
+  - when "choices"
+    = f.input :choice_id, :collection => f.object.question.choices, :as => :radio, :label => false

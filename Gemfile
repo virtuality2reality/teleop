@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'haml'
 gem 'simple_form'
 gem 'jquery-rails'
+gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 
 group :development do
   gem 'wirble'

@@ -614,12 +614,12 @@ body{
 	margin: 10px -7px 10px 10px;
 	/*[empty]border:;*/
 }
-#content .pagination a{
+#content .pagination a, #content .pagination span, #content .pagination em{
 	display: inline-block;
 	height: 20px;
-	width: 20px;
 	line-height: 20px;
 	margin: 0 1px 0 0;
+	padding: 0 0.5em;
 	border: 1px solid #DAD9D9;
 	text-align: center;
 	text-decoration: none;
@@ -633,7 +633,7 @@ body{
 #content .pagination a.next, #content .pagination a.prev{
 	border: 1px solid #FFFFFF;
 }
-#content .pagination a.current, #content .pagination a:hover{
+#content .pagination em, #content .pagination a:hover{
 	background: url(img/buttons.png) left -68px;
 	border: 1px solid #3580A9;
 	/*+text-shadow:0px -1px 0px #2C6AA3;*/
@@ -978,7 +978,15 @@ body{
 	font-weight: bold !important;
 }
 /*Checkbox/Radio*/
-.selector, .checker, .button, .radio, .uploader{
+#content .radio label {
+	width: auto;
+	float: none;
+}
+#content .radio input {
+	width: auto !important;
+	height: auto !important;
+}
+/*.selector, .checker, .button, .radio, .uploader{
 	position: relative;
 	display: inline-block;
 	padding: 0px;
@@ -988,7 +996,6 @@ body{
 	display: block;
 }
 #content .checker:hover, #content .radio:hover{
-	/*+box-shadow:0px 0px 10px #D2D2D2;*/
 	-moz-box-shadow: 0px 0px 10px #D2D2D2;
 	-webkit-box-shadow: 0px 0px 10px #D2D2D2;
 	-o-box-shadow: 0px 0px 10px #D2D2D2;
@@ -1006,7 +1013,7 @@ body{
 }
 #content .checker span.checked, #content .radio span.checked{
 	background-position: top left;
-}
+}*/
 /*Select*/
 #content .selector, #content .selector select, #content .selector span{
 	width: 162px !important;
@@ -1781,7 +1788,7 @@ Background*/
 	box-shadow: 0px 2px 5px #100806;
 }
 /** CORE UNIFORM **/
-.selector, .checker, .button, .radio, .uploader{
+/*.selector, .checker, .button, .radio, .uploader{
 	display: -moz-inline-box;
 	display: inline-block;
 	vertical-align: middle;
@@ -1790,7 +1797,7 @@ Background*/
 }
 .selector select:focus, .radio input:focus, .checker input:focus, .uploader input:focus{
 	outline: 0;
-}
+}*/
 /*Button*/
 div.button a, div.button button, div.button input{
 	position: absolute;
@@ -1841,7 +1848,7 @@ div.checker input{
 	background: none;
 }
 /*Radio*/
-div.radio{
+/*div.radio{
 	position: relative;
 }
 div.radio span{
@@ -1855,7 +1862,7 @@ div.radio input{
 	text-align: center;
 	display: inline-block;
 	background: none;
-}
+}*/
 /*Uploader*/
 div.uploader{
 	position: relative;

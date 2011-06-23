@@ -1,4 +1,5 @@
 %li.question
+  = f.hidden_field :position, :class => "position"
   %fieldset
     %legend Question
     %div
@@ -8,7 +9,7 @@
     = f.input :ext_id
     - case typ
     - when "choices"
-      %ul.choices
+      %ul.choices.sortable
         = f.fields_for :choices do |builder|
           = render 'choice_fields', :f => builder
       %div= link_to_add_fields "Nouveau choix", f, :choices, :class => "button white"

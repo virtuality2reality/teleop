@@ -4,13 +4,21 @@
     {
       axis: 'y',
       cursor: 'move',
-      placeholder: 'sortable-placeholder'
+      placeholder: 'sortable-placeholder',
+      scrollSensitivity: 100,
+      scrollSpeed: 20,
+      tolerance: 'pointer',
+      update: function(event, ui) {
+        $parent = ui.item.closest('.sortable');
+        $parent.children("li").each(function(index){
+          $(this).children('.position').val(index);
+        });
+      }
     };
-    $(".sections").sortable(sortableOptions);
-    $(".questions").sortable(sortableOptions);
+    $(".sortable").sortable(sortableOptions);
   });
 
-= simple_form_for [@survey.client, @survey] do |f|
+= simple_form_for [@survey.client, @survey], :html => {:novalidate => true} do |f|
   = f.hidden_field :client_id
   .bloc
     .title Général
@@ -20,7 +28,7 @@
   .bloc
     .title Sections et questions
     .content
-      %ul.sections
+      %ul.sections.sortable
         = f.fields_for :sections do |builder|
           = render 'section_fields', :f => builder
       %div

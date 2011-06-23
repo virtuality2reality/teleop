@@ -1,0 +1,23 @@
+%h1= breadcrumb(@call.survey.client, @call.survey, @call.representation)
+
+.bloc
+  .content
+    %ol
+      - @call.answers_by_section.each do |section_title, answers|
+        %li
+          %h2= section_title
+          %ol
+            - answers.each do |a|
+              %li
+                %h3= a.question.title
+                %p
+                  - case a.question.typ
+                  - when "open"
+                    = a.body
+                  - when "choices"
+                    - a.question.choices.each do |c|
+                      - if c == a.choice
+                        %strong= c.title
+                      - else
+                        %span= c.title
+              

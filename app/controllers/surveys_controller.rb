@@ -14,6 +14,7 @@ class SurveysController < ApplicationController
   # GET /surveys/1.xml
   def show
     @survey = Survey.find(params[:id])
+    @calls = @survey.calls.paginate :page => params[:page], :per_page => 5
 
     respond_to do |format|
       format.html # show.html.erb
