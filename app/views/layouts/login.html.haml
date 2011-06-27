@@ -5,11 +5,7 @@
     = stylesheet_link_tag 'reset', 'style'
     = javascript_include_tag 'jquery', 'jquery-ui', 'jquery_ujs', 'application'
     = csrf_meta_tag
-  %body
-    #head
-      = render 'layouts/header'
-    #sidebar
-      = render 'layouts/menu'
-    #content
+  %body.dark
+    #content.login
       = render 'layouts/notifications'
       = yield

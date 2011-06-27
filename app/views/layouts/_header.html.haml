@@ -1,0 +1,5 @@
+.left
+  - if user_signed_in?
+    Bonjour,
+    = current_user.email + " | "
+    = link_to "Déconnexion", destroy_user_session_path

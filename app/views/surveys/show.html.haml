@@ -4,7 +4,8 @@
   .title Actions
   .content
     = link_to "Nouvel appel", new_client_survey_call_path(@survey.client, @survey), :class => "button"
-    = link_to "Editer le questionnaire", edit_client_survey_path(@survey.client, @survey), :class => "button"
+    - if can? :update, @survey
+      = link_to "Editer le questionnaire", edit_client_survey_path(@survey.client, @survey), :class => "button"
 
 .bloc
   .title Appels

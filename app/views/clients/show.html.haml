@@ -1,9 +1,10 @@
 %h1= @client.name
 
-.bloc
-  .title Actions
-  .content
-    = link_to "Créer un nouveau questionnaire", new_client_survey_path(@client), :class => "button"
+- if can? :create, Survey
+  .bloc
+    .title Actions
+    .content
+      = link_to "Créer un nouveau questionnaire", new_client_survey_path(@client), :class => "button"
 
 .bloc
   .title Questionnaires

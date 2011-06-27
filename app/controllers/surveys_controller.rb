@@ -1,15 +1,6 @@
 class SurveysController < ApplicationController
-  # GET /surveys
-  # GET /surveys.xml
-  def index
-    @surveys = Survey.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @surveys }
-    end
-  end
-
+  authorize_resource
+  
   # GET /surveys/1
   # GET /surveys/1.xml
   def show
