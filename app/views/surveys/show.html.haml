@@ -35,7 +35,7 @@
           %ol
             - s.questions.each do |q|
               %li
-                %h4= q.title
+                %h4= q.title + (q.required? ? "*" : "") + (q.ext_id.blank? ? "" : " [#{q.ext_id}]")
                 %ul
                   - q.choices.each do |c|
-                    %li= "#{c.title}"
+                    %li= "#{c.title}" + (c.ext_id.blank? ? "" : " [#{c.ext_id}]")

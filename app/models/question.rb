@@ -11,4 +11,5 @@ class Question < ActiveRecord::Base
   def open?
     typ == "open"
   end
+  
 end

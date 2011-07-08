@@ -1,6 +1,6 @@
 = f.hidden_field :question_id, :value => f.object.question.id
 = f.hidden_field :id, :value => f.object.id if f.object.persisted?
-%h3= f.object.question.title
+%h3= f.object.question.title + (f.object.question.required? ? "*" : "")
 %div
   - if f.object.persisted?
     %div

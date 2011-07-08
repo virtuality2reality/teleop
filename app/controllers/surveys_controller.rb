@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class SurveysController < ApplicationController
   authorize_resource
   
@@ -36,7 +37,7 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to(@survey.client, :notice => 'Survey was successfully created.') }
+        format.html { redirect_to([@survey.client, @survey], :notice => 'Questionnaire créé avec succès.') }
       else
         format.html { render :action => "new" }
       end
@@ -50,7 +51,7 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.update_attributes(params[:survey])
-        format.html { redirect_to(client_survey_path(@survey.client, @survey), :notice => 'Survey was successfully updated.') }
+        format.html { redirect_to(client_survey_path(@survey.client, @survey), :notice => 'Questionnaire mis à jour avec succès.') }
       else
         format.html { render :action => "edit" }
       end

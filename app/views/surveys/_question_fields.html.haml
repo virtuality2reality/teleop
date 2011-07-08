@@ -4,6 +4,7 @@
     %legend Question
     %div
       = link_to_remove_fields image_tag('icons/actions/delete.png'), f, :selector => ".question"
+      = f.input :required
     = f.hidden_field :typ, :value => typ
     = f.input :title
     = f.input :ext_id

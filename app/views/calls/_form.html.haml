@@ -1,10 +1,9 @@
 .bloc
   .content.call
     = simple_form_for([@call.survey.client, @call.survey, @call], :html => {:novalidate => true}) do |f|
-      = f.error_notification
       = f.hidden_field :survey_id, :value => @call.survey.id
-      - answers_for(f).each do |section_title, answers|
-        %ol
+      %ol
+        - answers_for(f).each do |section_title, answers|
           %li
             %h1= section_title
           %ol

@@ -234,6 +234,7 @@ fr:
       question:
         title: "Titre"
         ext_id: "Id externe"
+        required: "Obligatoire"
       choice:
         title: "Titre"
         ext_id: "Id externe"

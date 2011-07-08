@@ -41,6 +41,7 @@ class CallsController < ApplicationController
   # GET /calls/1/edit
   def edit
     @call = Call.find(params[:id])
+    build_missing_answers
   end
 
   # POST /calls
@@ -52,6 +53,7 @@ class CallsController < ApplicationController
       if @call.save
         format.html { redirect_to(new_client_survey_call_path(@call.survey.client, @call.survey), :notice => "L'appel a été enregistré. Vous pouvez effectuer un nouvel appel.") }
       else
+        build_missing_answers
         format.html { render :action => "new" }
       end
     end
@@ -66,6 +68,7 @@ class CallsController < ApplicationController
       if @call.update_attributes(params[:call])
         format.html { redirect_to([@call.survey.client, @call.survey], :notice => "L'appel a été mis à jour.") }
       else
+        build_missing_answers
         format.html { render :action => "edit" }
       end
     end
@@ -80,5 +83,18 @@ class CallsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(calls_url) }
     end
+  end
+  
+  private
+  def build_missing_answers
+    @call.survey.sections.each do |s|
+      s.questions.each do |q|
+        if @call.answer_for_question(q).nil?
+          a = @call.answers.build
+          a.question = q
+        end
+      end
+    end
+    @call.answers.sort! { |a,b| [a.question.section.position, a.question.position] <=> [b.question.section.position, b.question.position] }
   end
 end
