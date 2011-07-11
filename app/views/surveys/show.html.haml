@@ -37,8 +37,7 @@
       %tbody
         - @survey.sections.each do |s|
           %tr
-            %td
-            %td
+            %td{:colspan => 2}
               %h3= s.title
             %td
             %td
