@@ -1,0 +1,5 @@
+%li.section
+  %h3= f.object.title
+  %ol
+    = f.fields_for :questions do |builder|
+      = render 'question_fields', :f => builder

@@ -4,6 +4,7 @@
     = link_to "Nouvel appel", new_client_survey_call_path(@survey.client, @survey), :class => "button"
     - if can? :update, @survey
       = link_to "Editer le questionnaire", edit_client_survey_path(@survey.client, @survey), :class => "button"
+      = link_to "Gérer les dépendances entre questions", edit_dependencies_client_survey_path(@survey.client, @survey), :class => "button"
 
 .bloc
   .title Appels
@@ -13,14 +14,11 @@
         %tr
           %th Heure
           %th Nb réponses
-          %th Actions
       %tbody
         - @calls.each do |c|
           %tr
             %td= link_to l(c.created_at), [@survey.client, @survey, c]
             %td= c.answers.size
-            %td
-              = link_to image_tag("icons/actions/edit.png"), edit_client_survey_call_path(@survey.client, @survey, c)
     = will_paginate @calls
 
 .bloc
@@ -33,7 +31,12 @@
           %ol
             - s.questions.each do |q|
               %li
-                %h4= q.title + (q.required? ? "*" : "") + (q.ext_id.blank? ? "" : " [#{q.ext_id}]")
+                %h4= q.full_title
                 %ul
                   - q.choices.each do |c|
-                    %li= "#{c.title}" + (c.ext_id.blank? ? "" : " [#{c.ext_id}]")
+                    %li= c.full_title
+                - if q.has_dependency?
+                  %h5 Dépend de
+                  %ul
+                    - q.depending_choices.each do |dc|
+                      %li #{dc.question.full_title} - #{dc.full_title}

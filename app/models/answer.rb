@@ -12,12 +12,21 @@ class Answer < ActiveRecord::Base
     question.open?
   end
   
+  def choices?
+    question.choices?
+  end
+  
   def required?
-    question.required?
+    logger.debug "!!!!!! Dependency met for #{question.title}: #{call.dependency_met_for?(self).inspect}"
+    question.required? && call.dependency_met_for?(self)
   end
   
   def not_required_and_invalid?
     !required? && body.blank? && choice_id.blank?
+  end
+  
+  def answered?
+    open? ? !body.blank? : !choice_id.blank?
   end
   
   private

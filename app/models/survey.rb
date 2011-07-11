@@ -10,4 +10,24 @@ class Survey < ActiveRecord::Base
   def representation
     title
   end
+  
+  def select_options
+    options = []
+    sections.each do |s|
+      options << [ s.title, [ ] ]
+      next if s.questions.nil?
+      s.questions.each do |q|
+        if q.open?
+          next
+        end
+        options << [
+          "&nbsp;&nbsp;#{q.title}".html_safe,
+          q.choices.map do |c|
+            [ "&nbsp;&nbsp;&nbsp;&nbsp;#{c.title}".html_safe, c.id ]
+          end
+        ]
+      end
+    end
+    options
+  end
 end

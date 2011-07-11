@@ -5,4 +5,5 @@ class Section < ActiveRecord::Base
   
   validates_presence_of :survey
   validates_presence_of :title
+  
 end

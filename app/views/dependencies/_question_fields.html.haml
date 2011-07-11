@@ -1,0 +1,4 @@
+%li.question
+  %h4= f.object.full_title
+  %div
+    = f.select "depending_choice_ids", grouped_options_for_select(@survey_options, f.object.depending_choice_ids), {}, { :multiple => true }

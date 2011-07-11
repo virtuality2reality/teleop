@@ -32,12 +32,24 @@ class Call < ActiveRecord::Base
     end
     nil
   end
+  
+  def dependency_met_for?(answer)
+    return true if answer.question.depending_choices.size == 0
+    answer.question.depending_choices.each do |dc|
+      answers.each do |a|
+        if (a.choices?)
+          return true if a.choice == dc
+        end
+      end
+    end
+    false
+  end
 
   private  
   def required_questions
     survey.questions.each do |q|
       a = answer_for_question(q)
-      if a && a.not_required_and_invalid?
+      if a && (a.not_required_and_invalid?)
         answers.delete(a)
       end
     end

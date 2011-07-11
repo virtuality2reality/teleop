@@ -16,6 +16,15 @@ var teleop = {
   }
 }
 
+$.fn.niceShow = function(duration) {
+  duration = duration || 500;
+  return $(this).slideDown().fadeTo(duration,1); 
+};
+$.fn.niceHide = function(duration) {
+  duration = duration || 500;
+  return $(this).fadeTo(duration,0).slideUp(); 
+};
+
 $(document).ready(function (){
 
 /** 

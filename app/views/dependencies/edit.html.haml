@@ -1,0 +1,7 @@
+.bloc
+  .content
+    = simple_form_for @survey, :url => update_dependencies_client_survey_path(@survey.client, @survey), :html => {:novalidate => true} do |f|
+      %ol.sections
+        = f.fields_for :sections do |builder|
+          = render 'section_fields', :f => builder
+      = f.button :submit
