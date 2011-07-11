@@ -3,6 +3,7 @@ class Call < ActiveRecord::Base
   has_many :answers, :dependent => :destroy, :inverse_of => :call
   accepts_nested_attributes_for :answers, :allow_destroy => true
   has_one :client, :through => :survey
+  belongs_to :user
   
   validates_presence_of :survey
   

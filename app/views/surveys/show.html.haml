@@ -12,11 +12,13 @@
     %table
       %thead
         %tr
+          %th Opérateur
           %th Heure
           %th Nb réponses
       %tbody
         - @calls.each do |c|
           %tr
+            %td= c.user.email if c.user
             %td= link_to l(c.created_at), [@survey.client, @survey, c]
             %td= c.answers.size
     = will_paginate @calls

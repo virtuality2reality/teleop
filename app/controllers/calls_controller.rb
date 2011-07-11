@@ -55,6 +55,7 @@ class CallsController < ApplicationController
   # POST /calls.xml
   def create
     @call = Call.new(params[:call])
+    @call.user = current_user
     add_base_breadcrumb
     add_breadcrumb "Nouvel appel", nil
     
