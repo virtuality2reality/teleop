@@ -13,4 +13,5 @@
       = render 'layouts/menu'
     #content
       = render 'layouts/notifications'
+      %h1= render_breadcrumbs :separator => " &gt; ", :builder => BreadcrumbsOnRails::Breadcrumbs::CustomBuilder
       = yield

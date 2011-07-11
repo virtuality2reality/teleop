@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 gem 'devise'
 gem 'cancan'
+gem 'breadcrumbs_on_rails'
 
 group :development do
   gem 'sqlite3'

@@ -6,6 +6,7 @@ class SurveysController < ApplicationController
   # GET /surveys/1.xml
   def show
     @survey = Survey.find(params[:id])
+    add_base_breadcrumb
     @calls = @survey.calls.paginate :page => params[:page], :per_page => 5
 
     respond_to do |format|
@@ -19,6 +20,8 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
     @survey.client = Client.find(params[:client_id])
+    add_base_breadcrumb
+    add_breadcrumb "Nouveau questionnaire", nil
 
     respond_to do |format|
       format.html # new.html.erb
@@ -28,12 +31,16 @@ class SurveysController < ApplicationController
   # GET /surveys/1/edit
   def edit
     @survey = Survey.find(params[:id])
+    add_base_breadcrumb
+    add_breadcrumb "Edition", nil
   end
 
   # POST /surveys
   # POST /surveys.xml
   def create
     @survey = Survey.new(params[:survey])
+    add_base_breadcrumb
+    add_breadcrumb "Nouveau questionnaire", nil
 
     respond_to do |format|
       if @survey.save
@@ -48,6 +55,8 @@ class SurveysController < ApplicationController
   # PUT /surveys/1.xml
   def update
     @survey = Survey.find(params[:id])
+    add_base_breadcrumb
+    add_breadcrumb "Edition", nil
 
     respond_to do |format|
       if @survey.update_attributes(params[:survey])
@@ -68,5 +77,11 @@ class SurveysController < ApplicationController
       format.html { redirect_to(surveys_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  def add_base_breadcrumb
+    add_breadcrumb @survey.client.representation, client_path(@survey.client)
+    add_breadcrumb @survey.representation, client_survey_path(@survey.client, @survey) if @survey.persisted?
   end
 end

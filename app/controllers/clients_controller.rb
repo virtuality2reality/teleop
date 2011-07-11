@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   
   def show
     @client = Client.find(params[:id])
-    @survey = Survey.new(:client => @client)
+    add_breadcrumb @client.name, @client
     
     respond_to do |format|
       format.html
