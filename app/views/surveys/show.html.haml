@@ -24,19 +24,37 @@
 .bloc
   .title Questionnaire
   .content
-    %ol
-      - @survey.sections.each do |s|
-        %li
-          %h3= s.title
-          %ol
-            - s.questions.each do |q|
-              %li
-                %h4= q.full_title
+    %table
+      %thead
+        %tr
+          %th ID externe
+          %th Question
+          %th Choix
+          %th Obligatoire
+          %th Dépend de
+      %tbody
+        - @survey.sections.each do |s|
+          %tr
+            %td
+            %td
+              %h3= s.title
+            %td
+            %td
+            %td
+          - s.questions.each do |q|
+            %tr
+              %td
+                = q.ext_id
+              %td
+                %h4= q.title
+              %td
                 %ul
                   - q.choices.each do |c|
-                    %li= c.full_title
+                    %li #{c.ext_id} => #{c.title}
+              %td
+                = q.required? ? "Oui" : ""
+              %td
                 - if q.has_dependency?
-                  %h5 Dépend de
                   %ul
                     - q.depending_choices.each do |dc|
-                      %li #{dc.question.full_title} - #{dc.full_title}
+                      %li [#{dc.question.ext_id}] #{dc.question.title} - [#{dc.ext_id}] #{dc.title}
