@@ -1,4 +1,4 @@
-%li.answer{:id => "answer_#{f.object.question.id}", :style => (f.object.question.has_dependency? && !f.object.answered?) ? "display: none" : nil}
+%li.answer{:id => "answer_#{f.object.question.id}", :style => @call.dependency_met_for?(f.object) ? nil : "display: none"}
   = f.hidden_field :question_id, :value => f.object.question.id
   = f.hidden_field :id, :value => f.object.id if f.object.persisted?
   %h3= f.object.question.title + (f.object.question.required? ? "*" : "")
@@ -54,5 +54,5 @@
         }
       }
     });
-    $("input[type=radio]").change();
+    // $("input[type=radio]").change();
   });
