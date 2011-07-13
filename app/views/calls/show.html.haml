@@ -1,11 +1,11 @@
 .bloc
   .content
     %ol
-      - @call.answers_by_section.each do |section_title, answers|
+      - @call.answers_by_section.each do |section|
         %li
-          %h2= section_title
+          %h2= section[:section]
           %ol
-            - answers.each do |a|
+            - section[:answers].each do |a|
               %li
                 %h3= a.question.title
                 %p

@@ -17,15 +17,30 @@ class Call < ActiveRecord::Base
   end
   
   def answers_by_section
-    result = {}
+    result = []
     survey.sections.each do |s|
-      result[s.title] ||= []
+      i = result.index { |sec| sec[:section] == s.title }
+      if i.nil?
+        result << { :section => s.title, :answers => [] }
+        i = result.length - 1
+      end
+      
       s.questions.each do |q|
         a = answer_for_question(q) || answers.build(:question => q)
-        result[s.title] << a
+        result[i][:answers] << a
       end
     end
     result
+    
+    # result = {}
+    # survey.sections.each do |s|
+    #   result[s.title] ||= []
+    #   s.questions.each do |q|
+    #     a = answer_for_question(q) || answers.build(:question => q)
+    #     result[s.title] << a
+    #   end
+    # end
+    # result
   end
   
   def answer_for_question(q)
