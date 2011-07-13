@@ -10,6 +10,7 @@ class Call < ActiveRecord::Base
   validate :required_questions
   
   default_scope order("created_at DESC")
+  scope :not_posted, where("posted_at IS NULL")
   
   def representation
     I18n.l(created_at)
@@ -44,6 +45,14 @@ class Call < ActiveRecord::Base
       end
     end
     false
+  end
+  
+  def as_hash
+    hash = {}
+    answers.each do |a|
+      hash[a.question.ext_id] = a.question.open? ? a.body : a.choice.ext_id
+    end
+    hash
   end
 
   private  

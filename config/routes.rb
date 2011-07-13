@@ -12,6 +12,10 @@ Teleop::Application.routes.draw do
     end
   end
   
+  post 'stub/test' => "stub#test"
+  get 'post/test' => "post#test"
+  get 'post/:client_name' => "post#post_calls"
+  
   root :to => "clients#index"
   
 end

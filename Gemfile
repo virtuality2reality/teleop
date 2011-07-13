@@ -9,6 +9,7 @@ gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branc
 gem 'devise'
 gem 'cancan'
 gem 'breadcrumbs_on_rails'
+gem 'httparty'
 
 group :development do
   gem 'sqlite3'
