@@ -16,6 +16,13 @@
       }
     };
     $(".sortable").sortable(sortableOptions);
+    
+    // Set positions
+    $(".sortable").each(function(){
+      $(this).children("li").each(function(index){
+        $(this).children('.position').val(index);
+      });
+    });
   });
 
 = simple_form_for [@survey.client, @survey], :html => {:novalidate => true} do |f|

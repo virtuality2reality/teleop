@@ -17,7 +17,6 @@ class Answer < ActiveRecord::Base
   end
   
   def required?
-    logger.debug "!!!!!! Dependency met for #{question.title}: #{call.dependency_met_for?(self).inspect}"
     question.required? && call.dependency_met_for?(self)
   end
   
