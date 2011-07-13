@@ -3,10 +3,10 @@
     = simple_form_for([@call.survey.client, @call.survey, @call], :html => {:novalidate => true}) do |f|
       = f.hidden_field :survey_id, :value => @call.survey.id
       %ol
-        - answers_for(f).each do |section_title, answers|
+        - answers_for(f).each do |section|
           %li
-            %h1= section_title
+            %h1= section[:section]
           %ol
-            - answers.each do |a|
+            - section[:answers].each do |a|
               = a
       = f.button :submit
