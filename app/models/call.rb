@@ -65,7 +65,9 @@ class Call < ActiveRecord::Base
   def as_hash
     hash = {}
     answers.each do |a|
-      hash[a.question.ext_id] = a.question.open? ? a.body : a.choice.ext_id
+      unless a.question.ext_id.nil?
+        hash[a.question.ext_id] = a.question.open? ? a.body : a.choice.ext_id
+      end
     end
     hash
   end

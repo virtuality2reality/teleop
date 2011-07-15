@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Webservices::DevisProx
   include HTTParty
   
@@ -12,23 +13,22 @@ class Webservices::DevisProx
   end
   
   def post_call(call)
-    id = "544192"
+    id = "setexonline"
     idq = call.survey.ext_id
     #uri = '/stub/test'
     uri = "/daemon_incoming.php?source=#{id}&idq=#{idq}"
     
     params = {
-      "idq" => idq,
-      "ip" => "12.34.56.78"
+      "idq" => idq
     }.merge(call.as_hash)
     
     result = self.class.post(uri, :body => params)
     
-    if (result.code == 200 and result.body.blank?)
+    if (result.code == 200 and result.body == "OK")
       call.update_attributes!(:posted_at => Time.now)
-      WS_LOGGER.info "Successfully posted call[#{call.id}]"
+      WS_LOGGER.info "Successfully posted call[#{call.id}] to client[#{call.client.name}]"
     else
-      WS_LOGGER.error "Failed to post call[#{call.id}] HTTP[#{result.code}] BODY[#{result.body}]"
+      WS_LOGGER.error "Failed to post call[#{call.id}] to client[#{call.client.name}]. HTTP[#{result.code}] BODY[#{result.body.inspect}]"
     end
   end
 end

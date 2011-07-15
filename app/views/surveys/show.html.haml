@@ -15,12 +15,14 @@
           %th Opérateur
           %th Heure
           %th Nb réponses
+          %th Posté par webservice le
       %tbody
         - @calls.each do |c|
           %tr
             %td= c.user.email if c.user
             %td= link_to l(c.created_at), [@survey.client, @survey, c]
             %td= c.answers.size
+            %td= l(c.posted_at) if c.posted_at
     = will_paginate @calls
 
 .bloc
