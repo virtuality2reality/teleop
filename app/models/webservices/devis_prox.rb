@@ -26,7 +26,7 @@ class Webservices::DevisProx
     
     if (result.code == 200 and result.body == "OK")
       call.update_attributes!(:posted_at => Time.now)
-      WS_LOGGER.info "Successfully posted call[#{call.id}] to client[#{call.client.name}]"
+      WS_LOGGER.info "Successfully posted call[#{call.id}] to client[#{call.client.name}]: [#{params}]"
     else
       WS_LOGGER.error "Failed to post call[#{call.id}] to client[#{call.client.name}]. HTTP[#{result.code}] BODY[#{result.body.inspect}]"
     end
