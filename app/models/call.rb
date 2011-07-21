@@ -71,6 +71,12 @@ class Call < ActiveRecord::Base
     end
     hash
   end
+  
+  def contact
+    %w{ prenom nom email }.map do |i|
+      answers.where(:question_id => survey.questions.where(:ext_id => i).first.id).first.body
+    end.join(" ")
+  end
 
   private  
   def required_questions

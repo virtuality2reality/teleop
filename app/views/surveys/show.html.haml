@@ -14,6 +14,7 @@
         %tr
           %th Opérateur
           %th Heure
+          %th Contact
           %th Nb réponses
           %th Posté par webservice le
           %th Actions
@@ -22,6 +23,7 @@
           %tr
             %td= c.user.email if c.user
             %td= link_to l(c.created_at), [@survey.client, @survey, c]
+            %td= c.contact
             %td= c.answers.size
             %td= l(c.posted_at) if c.posted_at
             %td= link_to(image_tag('icons/actions/edit.png'), edit_client_survey_call_path(@survey.client, @survey, c)) if can? :update, @survey
