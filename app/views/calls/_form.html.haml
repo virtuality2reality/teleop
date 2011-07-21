@@ -10,3 +10,42 @@
             - section[:answers].each do |a|
               = a
       = f.button :submit
+
+- if %w{new create}.include?(controller.action_name)
+  :javascript
+    function getAllDependentQuestions($choice)
+    {
+      allDependentQuestions = [];
+      $choice.closest("div.radio").find("input[type=radio]").each(function(){
+        $.merge(allDependentQuestions, $(this).data("dependent-questions"));
+      });
+      return allDependentQuestions;
+    }
+    $.fn.clearAnswers = function() {
+      $(this).find("input[type=text]").val("");
+      $(this).find("input[type=radio]").prop("checked", false);
+    };
+    $(document).ready(function (){
+      $("input[type=radio]").change(function(){
+        if ($(this).is(":checked"))
+        {
+          dependentQuestions = $(this).data("dependent-questions");
+          allDependentQuestions = getAllDependentQuestions($(this));
+
+          for (i = 0; i < allDependentQuestions.length; i++)
+          {
+            $answer = $("#answer_" + allDependentQuestions[i]);
+            if ($.inArray(allDependentQuestions[i], dependentQuestions) != -1)
+            {
+              $answer.show(200);
+            }
+            else
+            {
+              $answer.hide(200);
+              $answer.clearAnswers();
+            }
+          }
+        }
+      });
+      // $("input[type=radio]").change();
+    });

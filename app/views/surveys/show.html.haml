@@ -16,6 +16,7 @@
           %th Heure
           %th Nb réponses
           %th Posté par webservice le
+          %th Actions
       %tbody
         - @calls.each do |c|
           %tr
@@ -23,6 +24,7 @@
             %td= link_to l(c.created_at), [@survey.client, @survey, c]
             %td= c.answers.size
             %td= l(c.posted_at) if c.posted_at
+            %td= link_to(image_tag('icons/actions/edit.png'), edit_client_survey_call_path(@survey.client, @survey, c)) if can? :update, @survey
     = will_paginate @calls
 
 .bloc
