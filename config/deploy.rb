@@ -150,3 +150,13 @@ set :rails_env, :production
 # :soft uses the standard touch tmp/restart.txt which leaves database connections
 # lingering until the workers time out
 # set :passenger_restart_strategy, :hard
+
+set :rake, "bundle exec rake"
+
+set :default_environment, {
+  'PATH' => "/home/rails/.rvm/gems/ruby-1.9.2-p290/bin:/home/rails/.rvm/bin:$PATH",
+  'RUBY_VERSION' => 'ruby-1.9.2-p290',
+  'GEM_HOME' => '/home/rails/.rvm/gems/ruby-1.9.2-p290',
+  'GEM_PATH' => '/home/rails/.rvm/gems/ruby-1.9.2-p290',
+  'LANG' => 'en_US.UTF-8'
+}
